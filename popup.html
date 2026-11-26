@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PassForge 密码工坊</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="11" height="11" rx="3"></rect>
+        <path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8"></path>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12.5 4.2 4.2L19 6.8"></path>
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24">
+        <path d="M20 11a8.1 8.1 0 0 0-14.6-4.7L4 8"></path>
+        <path d="M4 4v4h4"></path>
+        <path d="M4 13a8.1 8.1 0 0 0 14.6 4.7L20 16"></path>
+        <path d="M20 20v-4h-4"></path>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="4.5" y="10" width="15" height="10.5" rx="3"></rect>
+        <path d="M8.5 10V7.5a3.5 3.5 0 1 1 7 0V10M12 14.2v2.2"></path>
+      </symbol>
+    </svg>
+
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand-mark" src="icons/icon48.png" width="30" height="30" alt="" />
+          <div class="brand-text">
+            <span class="brand-name">PassForge</span>
+            <span class="brand-tagline">密码工坊</span>
+          </div>
+        </div>
+        <div class="local-pill" title="密码只在当前浏览器内生成，不会发送到网络">
+          <span class="local-dot" aria-hidden="true"></span>
+          仅本地
+        </div>
+      </header>
+
+      <section class="controls" aria-label="生成设置">
+        <div class="control-grid">
+          <div class="control">
+            <span class="control-label" id="lengthLabel">长度</span>
+            <div class="stepper" role="group" aria-labelledby="lengthLabel">
+              <button class="step-button" id="lengthMinus" type="button" aria-label="减少密码长度">−</button>
+              <output id="lengthValue" class="step-value" for="lengthMinus lengthPlus" aria-live="polite">12</output>
+              <button class="step-button" id="lengthPlus" type="button" aria-label="增加密码长度">+</button>
+            </div>
+          </div>
+
+          <div class="control">
+            <span class="control-label" id="countLabel">数量</span>
+            <div class="stepper" role="group" aria-labelledby="countLabel">
+              <button class="step-button" id="countMinus" type="button" aria-label="减少生成数量">−</button>
+              <output id="countValue" class="step-value" for="countMinus countPlus" aria-live="polite">10</output>
+              <button class="step-button" id="countPlus" type="button" aria-label="增加生成数量">+</button>
+            </div>
+          </div>
+
+          <div class="strength">
+            <div class="strength-top">
+              <span class="control-label">强度</span>
+              <span class="entropy" id="entropy">75 bit</span>
+            </div>
+            <div class="strength-bottom">
+              <div class="strength-meter" id="strengthMeter" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <strong class="strength-label" id="strengthLabel">很强</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="charset-row" role="group" aria-labelledby="charsetLabel">
+          <span class="sr-only" id="charsetLabel">字符类型</span>
+          <button class="charset is-on" type="button" data-charset="uppercase" aria-pressed="true">
+            <span class="charset-sample" aria-hidden="true">AZ</span>
+            大写
+          </button>
+          <button class="charset is-on" type="button" data-charset="lowercase" aria-pressed="true">
+            <span class="charset-sample" aria-hidden="true">az</span>
+            小写
+          </button>
+          <button class="charset is-on" type="button" data-charset="numbers" aria-pressed="true">
+            <span class="charset-sample" aria-hidden="true">09</span>
+            数字
+          </button>
+          <button class="charset is-on" type="button" data-charset="symbols" aria-pressed="true">
+            <span class="charset-sample" aria-hidden="true">#!</span>
+            符号
+          </button>
+        </div>
+
+        <div class="options-row">
+          <label class="check">
+            <input id="avoidAmbiguous" type="checkbox" checked />
+            <span class="check-box" aria-hidden="true">
+              <svg class="icon icon-check"><use href="#i-check"></use></svg>
+            </span>
+            <span class="check-label">排除易混淆 <span class="confusables">0 O 1 l I</span></span>
+          </label>
+          <span class="guarantee">每种已选类型至少 1 个</span>
+        </div>
+      </section>
+
+      <section class="results" aria-labelledby="resultsTitle">
+        <header class="results-head">
+          <div class="results-heading">
+            <h2 id="resultsTitle">候选密码</h2>
+            <span class="count-badge" id="resultCount" title="候选密码数量">10</span>
+          </div>
+          <div class="results-actions">
+            <button class="copy-all" id="copyAll" type="button" title="复制全部密码">
+              <svg class="icon"><use href="#i-copy"></use></svg>
+              <span id="copyAllLabel">全部复制</span>
+            </button>
+            <button class="regenerate" id="regenerate" type="button" title="重新生成一批（快捷键 R）">
+              <svg class="icon"><use href="#i-refresh"></use></svg>
+              <span>重新生成</span>
+            </button>
+          </div>
+        </header>
+        <ol class="password-list" id="passwordList" aria-label="生成的候选密码"></ol>
+      </section>
+
+      <footer class="footer">
+        <span class="privacy-note" title="没有网络请求，也不会保存生成过的密码">
+          <svg class="icon"><use href="#i-lock"></use></svg>
+          只在本机生成，不上传、不保存
+        </span>
+        <span class="footer-hint" id="footerHint">点击密码复制 · 填入当前网页</span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

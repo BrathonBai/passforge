@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test and package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate manifest
+        run: node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('manifest.json','utf8'));if(m.manifest_version!==3)throw new Error('Expected Manifest V3');console.log(m.name, m.version)"
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build extension package
+        run: npm run package
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: passforge-extension
+          path: dist/*.zip
+          if-no-files-found: error

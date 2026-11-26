@@ -1,0 +1,23 @@
+{
+  "name": "passforge",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "package": "bash scripts/package.sh"
+  },
+  "description": "Local-first Chrome password generator with batch generation and context-menu fill.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BrathonBai/passforge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BrathonBai/passforge/issues"
+  },
+  "homepage": "https://brathonbai.github.io/passforge/",
+  "engines": {
+    "node": ">=20"
+  }
+}

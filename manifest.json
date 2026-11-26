@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "PassForge 密码工坊",
+  "short_name": "PassForge",
+  "version": "1.1.0",
+  "description": "批量生成高强度随机密码，只在本地运行。一键复制、填入网页，或在密码框上右键直接生成。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "PassForge · 生成密码",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "scripting",
+    "storage",
+    "clipboardWrite"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      },
+      "description": "打开 PassForge 密码工坊"
+    }
+  }
+}

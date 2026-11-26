@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#cdf564" />
+    <title>填充测试页 — PassForge 密码工坊</title>
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="PassForge 的公开测试页面，用于验证密码填入和右键自动生成密码功能。不会提交或保存任何数据。"
+    />
+    <link rel="icon" href="icon.png" />
+    <link rel="stylesheet" href="site.css" />
+    <style>
+      .test-main {
+        width: min(1040px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 38px 0 74px;
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 64px;
+        align-items: start;
+      }
+
+      .test-copy h1 {
+        margin-top: 22px;
+        font-size: clamp(36px, 4.4vw, 54px);
+        letter-spacing: -0.05em;
+      }
+
+      .test-copy p {
+        max-width: 440px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .test-copy .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        color: #5d6456;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .test-note {
+        margin-top: 24px;
+        padding: 13px 15px;
+        border-left: 3px solid var(--lime-strong);
+        border-radius: 0 8px 8px 0;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .test-card {
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--surface);
+        box-shadow: 0 18px 50px rgba(35, 42, 29, 0.12);
+      }
+
+      .test-card h2 {
+        font-size: 26px;
+      }
+
+      .test-card .sub {
+        margin: 6px 0 24px;
+        color: var(--muted-light);
+        font-size: 12px;
+      }
+
+      .test-field {
+        margin-bottom: 15px;
+      }
+
+      .test-field label {
+        display: block;
+        margin-bottom: 6px;
+        color: #565d51;
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .test-field input {
+        width: 100%;
+        height: 42px;
+        padding: 0 13px;
+        border: 1px solid #d9d5c8;
+        border-radius: 9px;
+        background: #fffefa;
+        color: var(--ink);
+        font: 13px var(--mono);
+      }
+
+      .test-field input:focus {
+        border-color: #a7cc47;
+        outline: 3px solid rgba(205, 245, 100, 0.3);
+      }
+
+      .test-submit {
+        width: 100%;
+        height: 43px;
+        margin-top: 8px;
+        border: 0;
+        border-radius: 9px;
+        background: var(--ink);
+        color: #f5f6ed;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .test-submit:hover {
+        background: #2b3229;
+      }
+
+      .test-card .fine {
+        margin: 18px 0 0;
+        color: var(--muted-light);
+        font-size: 9.5px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 820px) {
+        .test-main {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          width: min(100% - 32px, 660px);
+          padding-top: 18px;
+        }
+
+        .test-copy h1 {
+          font-size: 38px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="brand" href="./">
+        <img src="icon.png" width="32" height="32" alt="" />
+        PassForge <span>密码工坊</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="privacy.html">隐私</a>
+        <a href="https://github.com/BrathonBai/passforge" rel="noopener">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main class="test-main">
+      <section class="test-copy">
+        <p class="kicker">Test Page</p>
+        <h1>试试右键<br />自动生成密码。</h1>
+        <p>
+          这是一个公开的测试页面，用来验证 PassForge 的密码框识别、填入和确认框同步。
+          页面不会提交表单，也不会保存你输入的任何内容。
+        </p>
+        <p>
+          安装 PassForge 后，在下面的「密码」输入框上点右键，选择
+          <strong>自动生成密码</strong>；或者先在页面里点中密码框，再打开扩展点击「填入」。
+        </p>
+        <span class="chip">不会收集任何输入</span>
+        <div class="test-note">
+          这是演示页面，不是任何真实服务的注册页。请勿在这里使用你真实账户的密码。
+        </div>
+      </section>
+
+      <section class="test-card" aria-labelledby="test-title">
+        <h2 id="test-title">创建一个测试账户</h2>
+        <p class="sub">DEMO ONLY · 无数据提交</p>
+        <form autocomplete="off" onsubmit="return false">
+          <div class="test-field">
+            <label for="test-email">邮箱</label>
+            <input
+              id="test-email"
+              name="email"
+              type="email"
+              inputmode="email"
+              placeholder="hello@example.com"
+              autocomplete="off"
+            />
+          </div>
+          <div class="test-field">
+            <label for="test-password">密码</label>
+            <input
+              id="test-password"
+              name="new_password"
+              type="password"
+              placeholder="试试右键这里"
+              autocomplete="new-password"
+            />
+          </div>
+          <div class="test-field">
+            <label for="test-confirm">确认密码</label>
+            <input
+              id="test-confirm"
+              name="confirm_password"
+              type="password"
+              placeholder="PassForge 会自动同步"
+              autocomplete="new-password"
+            />
+          </div>
+          <button class="test-submit" type="button">创建测试账户</button>
+          <p class="fine">
+            此表单没有 action，也不会发起请求。PassForge 只在你主动操作时读取密码框并写入生成结果。
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <span>© 2026 PassForge · MIT License · 与 Google 无关</span>
+      <nav aria-label="页脚导航">
+        <a href="index.html">首页</a>
+        <a href="privacy.html">隐私政策</a>
+      </nav>
+    </footer>
+  </body>
+</html>
