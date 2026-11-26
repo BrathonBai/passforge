@@ -1,8 +1,10 @@
 # Chrome Web Store 发布指南
 
-状态：**1.1.0 上架材料已准备，尚未提交。** 提交动作需要发布者本人的 Google 开发者账号、$5 一次性注册费和 2FA，无法由代码代劳。
+状态：**材料已准备，暂未提交。** 待未来需要时可直接复用。
 
 时间基准：2026-11-26。Chrome Web Store 的界面和字段可能变化，以开发者后台实际显示为准。
+
+> 当前官网和隐私政策使用 GitHub 公共链接，不依赖旧的 GitHub Pages/博客域名；如以后启用独立站点，再替换 Homepage / Privacy policy。
 
 ## 需要准备的东西
 
@@ -27,7 +29,7 @@
 
 | 用途 | 文件 | 规格 |
 | --- | --- | --- |
-| 上传包 | `dist/passforge-1.1.0.zip` | 仅运行时文件，manifest 在 ZIP 根目录 |
+| 上传包 | `dist/passforge-1.1.0.zip` | 运行 `npm run package` 生成；也可从 GitHub Release 下载同名附件。仅运行时文件，manifest 在 ZIP 根目录 |
 | 商店图标 | `store-listing/icon-128.png` | 128×128 PNG，96×96 图形 + 透明留白 |
 | 截图 1 | `store-listing/screenshot-1.png` | 1280×800 PNG |
 | 截图 2 | `store-listing/screenshot-2.png` | 1280×800 PNG |
@@ -56,11 +58,7 @@ npm run package
 
 ### 2. 上传 ZIP
 
-在开发者后台点击 **Add new item**（添加新项），选择：
-
-```text
-passforge-extension/dist/passforge-1.1.0.zip
-```
+在开发者后台点击 **Add new item**（添加新项），选择 `dist/passforge-1.1.0.zip`（运行 `npm run package` 生成，或从 [v1.1.0 Release](https://github.com/BrathonBai/passforge/releases/tag/v1.1.0) 下载）。
 
 确认 manifest 和 ZIP 有效后，进入条目编辑页。不要上传包含 `README.md`、测试或商店截图的开发目录 ZIP；本项目的 `npm run package` 已经只打包运行时文件。
 
@@ -73,9 +71,9 @@ passforge-extension/dist/passforge-1.1.0.zip
 - 详细说明：复制 `listing-zh-CN.md` 的「详细说明」段落
 - 类别：工具（Tools）
 - 语言：中文（简体）
-- 官网：<https://brathonbai.github.io/passforge/>
+- 官网：<https://github.com/BrathonBai/passforge>
 - 支持：<https://github.com/BrathonBai/passforge/issues>
-- 隐私政策：<https://brathonbai.github.io/passforge/privacy.html>
+- 隐私政策：<https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md>
 - 商店图标：`store-listing/icon-128.png`
 - 截图：先上传 `screenshot-1.png`，再上传 `screenshot-2.png`
 - 小宣传图：`store-listing/small-promo-440x280.png`
@@ -90,8 +88,8 @@ passforge-extension/dist/passforge-1.1.0.zip
 - **单一用途**：在本地生成强随机密码，并根据用户操作复制或填入密码框。
 - **权限理由**：`activeTab`、`scripting`、`contextMenus`、`storage`、`clipboardWrite` 逐项说明。
 - **远程代码**：选择 **No, I am not using remote code**。
-- **数据使用**：本扩展在本地处理密码（authentication information），但不收集、不上传、不保存、不出售、不共享。由于 Chrome 的用户数据 FAQ 明确要求披露本地处理，建议在数据类别中选择 **Authentication information**，并用说明文本框解释“仅本地、用户主动触发、无传输、无保留”。请以后台实际字段和说明为准，务必与隐私政策一致。
-- **隐私政策 URL**：<https://brathonbai.github.io/passforge/privacy.html>
+- **数据使用**：本扩展在本地处理密码（authentication information）；不上传、不保存、不出售、不共享。由于 Chrome 的用户数据 FAQ 明确要求披露本地处理，建议在数据类别中选择 **Authentication information**，并用说明文本框解释“仅本地、用户主动触发、无传输、无保留”。请以后台实际字段和说明为准，务必与隐私政策一致。
+- **隐私政策 URL**：<https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md>
 - **Limited Use**：勾选遵守 Chrome Web Store User Data Policy 的相关声明。
 
 ### 5. Distribution
@@ -111,13 +109,14 @@ No account, login, or payment is required.
 1. Install PassForge 1.1.0.
 2. Click the toolbar icon. Ten candidate passwords are generated immediately.
 3. Click any password row to copy it. Click "填入" to fill the password field on the current page.
-4. To test the context-menu flow, open https://brathonbai.github.io/passforge/test-form.html
-   and right-click the 密码 input. Choose "自动生成密码". The password and confirmation
-   field should both be filled, with a confirmation toast at the bottom.
-5. No test credentials are needed. The test form does not submit or store data.
+4. To test the fill/right-click flow, open any page with a password field (no login required)
+   and right-click that field. Choose "自动生成密码". The password and confirmation field
+   should both be filled, with a confirmation toast at the bottom. A static local test form is
+   included at docs/test-form.html if you prefer not to use a live site.
+5. No test credentials are needed.
 ```
 
-公开测试页已放在仓库 `docs/test-form.html`，不会提交或保存输入。
+仓库内附带一个静态测试表单 `docs/test-form.html`，可在本地打开；它不会提交或保存输入。
 
 ### 7. 提交审核
 
@@ -140,7 +139,7 @@ No account, login, or payment is required.
 - [ ] Privacy practices 与 `PRIVACY.md` / 在线隐私政策一致
 - [ ] 权限理由覆盖全部 5 个权限
 - [ ] 未声明/未使用远程代码
-- [ ] 测试页可访问，审核员可按 Test instructions 复现
+- [ ] Test instructions 可按任意密码框复现，或审核员可本地打开 `docs/test-form.html`
 - [ ] 详细说明未堆砌关键词、未声称与 Google 有关联
 
 ## 审核通过后

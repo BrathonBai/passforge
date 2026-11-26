@@ -76,9 +76,9 @@ Recommended:
   - Explanation to add where the dashboard allows it:
 
 ```text
-Passwords are generated locally with crypto.getRandomValues() and written only into the
-password field the user explicitly chose (or copied to the clipboard when the user clicks
-Copy). They are never transmitted, logged, retained, sold, or shared. The only persistent
+Passwords are generated and handled locally with crypto.getRandomValues() and written only
+into the password field the user explicitly chose (or copied to the clipboard when the user
+clicks Copy). They are never transmitted, logged, retained, sold, or shared. The only persistent
 data is generation settings in chrome.storage.local, which contain no passwords. When
 filling, the extension temporarily reads minimal metadata about the focused password field
 (type, visibility, name/id/placeholder/autocomplete) to find the target and confirmation
@@ -99,12 +99,12 @@ Where the dashboard presents the standard statements, certify only what is true:
 - The extension complies with the Chrome Web Store User Data Policy, including the Limited Use requirements.
 - No humans read user data; the developer has no access to generated passwords.
 
-If a statement does not apply, follow the dashboard's instructions rather than checking it blindly. All answers must match [PRIVACY.md](../PRIVACY.md) and <https://brathonbai.github.io/passforge/privacy.html>.
+If a statement does not apply, follow the dashboard's instructions rather than checking it blindly. All answers must match [PRIVACY.md](../PRIVACY.md) and <https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md>.
 
 ## Privacy policy URL
 
 ```text
-https://brathonbai.github.io/passforge/privacy.html
+https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md
 ```
 
 ## Test instructions
@@ -115,10 +115,11 @@ No account, login, or payment is required.
 1. Install PassForge 1.1.0.
 2. Click the toolbar icon. Ten candidate passwords are generated immediately.
 3. Click any password row to copy it; click "填入" to fill the password field on the current page.
-4. For the right-click flow, open https://brathonbai.github.io/passforge/test-form.html,
-   right-click the 密码 input, and choose "自动生成密码". Both the password and confirmation
-   field should be filled, with a confirmation toast.
-5. No credentials are needed; the public test form does not submit or store data.
+4. For the fill/right-click flow, open any page with a password field (no login required),
+   right-click the field, and choose "自动生成密码". Both the password and confirmation field
+   should be filled, with a confirmation toast. A static test form is included in the repository
+   at docs/test-form.html if you prefer not to use a live site.
+5. No credentials are needed.
 
 Source: https://github.com/BrathonBai/passforge
 ```

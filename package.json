@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/BrathonBai/passforge/issues"
   },
-  "homepage": "https://brathonbai.github.io/passforge/",
+  "homepage": "https://github.com/BrathonBai/passforge#readme",
   "engines": {
     "node": ">=20"
   }

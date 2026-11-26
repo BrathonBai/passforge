@@ -58,10 +58,10 @@ PassForge 与 Google 无关联。
 
 | 字段 | 内容 |
 | --- | --- |
-| 官网 / Homepage URL | `https://brathonbai.github.io/passforge/` |
+| 官网 / Homepage URL | `https://github.com/BrathonBai/passforge` |
 | 支持 / Support URL | `https://github.com/BrathonBai/passforge/issues` |
-| 隐私政策 / Privacy policy URL | `https://brathonbai.github.io/passforge/privacy.html` |
-| 公开测试页（供审核员测试） | `https://brathonbai.github.io/passforge/test-form.html` |
+| 隐私政策 / Privacy policy URL | `https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md` |
+| 测试表单（本地文件） | `docs/test-form.html`；审核时使用任意含密码框的页面即可 |
 | 源代码 | `https://github.com/BrathonBai/passforge` |
 
 ## 图片
@@ -99,6 +99,6 @@ chrome.storage.local; it never stores passwords. clipboardWrite is used only whe
 clicks Copy or Copy All. contextMenus registers exactly one menu item.
 
 Passwords are never transmitted or retained. The privacy policy is available at
-https://brathonbai.github.io/passforge/privacy.html and the source code is at
+https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md and the source code is at
 https://github.com/BrathonBai/passforge.
 ```

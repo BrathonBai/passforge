@@ -13,9 +13,8 @@
 
 > **A local-first Chrome password generator.** Batch-generate strong passwords locally, copy them, or fill them on demand. No network calls, no password storage, no broad host permissions. See [English summary](#english).
 
-**项目主页**：[brathonbai.github.io/passforge](https://brathonbai.github.io/passforge/) · **下载**：[GitHub Releases](https://github.com/BrathonBai/passforge/releases/latest) · **隐私政策**：[在线版](https://brathonbai.github.io/passforge/privacy.html)
+**源码与主页**：[github.com/BrathonBai/passforge](https://github.com/BrathonBai/passforge) · **下载**：[GitHub Releases](https://github.com/BrathonBai/passforge/releases/latest) · **隐私政策**：[PRIVACY.md](https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md)
 
-> Chrome Web Store 上架材料已准备完毕，等待开发者账号提交与审核。当前可先从 GitHub Release 安装。
 
 ## 功能
 
@@ -44,7 +43,7 @@
 
 ## 安装
 
-### 从 GitHub Release 安装（当前推荐）
+### 从 GitHub Release 安装
 
 1. 打开 [Releases](https://github.com/BrathonBai/passforge/releases/latest)，下载最新的 `passforge-*.zip`。
 2. 解压到一个固定文件夹，不要直接从压缩包中加载。
@@ -63,11 +62,7 @@ cd passforge
 
 在 `chrome://extensions` 里选择 **加载已解压的扩展程序**，选中仓库根目录即可。扩展无需构建。
 
-装好后可以打开[在线测试页](https://brathonbai.github.io/passforge/test-form.html)验证填充和右键生成；页面不会提交或保存任何输入。
-
-### Chrome Web Store
-
-商店版本正在准备提交。上架后会在这里补充链接；上架所需文案、截图、权限说明和检查清单见 [`store-listing/`](store-listing/)。
+仓库里的 `docs/test-form.html` 是一个不会提交或保存数据的测试表单，可在本地打开用于验证填充和右键生成。
 
 ## 右键生成的范围说明
 
@@ -85,14 +80,14 @@ PassForge 不会把密码塞进普通文本框：只有当当前焦点确实是�
 - 密码只在你主动点击复制时进入系统剪贴板；剪贴板可能被系统或剪贴板管理器记录，敏感账户使用后建议清空剪贴板。
 - 符号集避开引号、反斜杠、反引号、竖线等容易触发兼容问题的字符；若网站仍拒绝符号，关闭「符号」即可生成纯字母数字密码。
 
-完整政策：[在线版](https://brathonbai.github.io/passforge/privacy.html) · [PRIVACY.md](PRIVACY.md)
+完整政策：[PRIVACY.md](PRIVACY.md)
 
 ### 已知边界
 
 - 不支持 `chrome://` 内部页面、Chrome 应用商店、PDF 内置阅读器等无法注入的页面；点击「填入」会自动转为复制。
 - 不支持跨域 iframe 中的表单。
 - 不保存或管理密码；请把生成结果存入可信的密码管理器。
-- 当前是自用型未上架扩展，开发者模式下 Chrome 可能提示停用开发者模式扩展。
+- 当前以开发者模式加载时，Chrome 可能提示停用开发者模式扩展。
 
 ## 开发
 
@@ -106,8 +101,8 @@ generator.js       安全随机生成、字符集和熵值
 fill-page.js       注入页面的密码填入逻辑
 icons/             16/32/48/128 图标
 tests/             生成器单元测试
-docs/              GitHub Pages 主页、隐私政策和截图
-store-listing/     Chrome Web Store 文案、图片和提交说明
+docs/              可自行托管的静态主页、隐私政策、测试页和截图
+store-listing/     商店备用文案、图片和检查清单
 scripts/package.sh 生成商店上传用 ZIP
 ```
 
@@ -140,4 +135,4 @@ PassForge is a local-first password generator for Chrome (Manifest V3). By defau
 
 All randomness comes from `crypto.getRandomValues()`; there is no `Math.random()` fallback. Passwords are never stored or transmitted. The extension has no network calls, no host permissions, and no persistent content scripts. It only accesses the active tab through `activeTab` after the user explicitly clicks Fill or the context-menu item. The only persisted data is generation settings in `chrome.storage.local`.
 
-The Chrome Web Store submission is being prepared. For now, install the latest ZIP from [Releases](https://github.com/BrathonBai/passforge/releases/latest), or load this repository as an unpacked extension.
+Install the latest ZIP from [Releases](https://github.com/BrathonBai/passforge/releases/latest), or load this repository as an unpacked extension.

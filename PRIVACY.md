@@ -2,13 +2,13 @@
 
 **最后更新：2026-11-26** · 适用版本：1.1.0 及以后
 
-在线版本：<https://brathonbai.github.io/passforge/privacy.html>
+公开版本：<https://github.com/BrathonBai/passforge/blob/main/PRIVACY.md>
 
 PassForge 密码工坊（以下简称“PassForge”）是一个完全在浏览器本地运行的开源密码生成器。本政策说明扩展会处理哪些数据、为什么处理，以及不会做什么。
 
 ## 摘要
 
-- PassForge 没有服务器，**不会收集、上传、出售或共享个人数据**。
+- PassForge 没有服务器，**不会将任何数据传输到设备之外，也不出售或共享数据**。为提供核心功能，它会在本机临时处理生成的密码和密码框的最小字段信息；这些数据不上传、不保存。
 - 生成的密码只存在于浏览器内存、系统剪贴板和/或你主动填入的网页密码框中；**扩展不保存密码**。
 - 唯一的持久化数据是生成偏好设置，保存在本机 `chrome.storage.local`，其中不含密码。
 - 没有分析、追踪、广告、账户系统或远程代码。
@@ -62,4 +62,4 @@ PassForge 对通过 Chrome API 获得的信息的使用，仅限于提供本扩�
 
 ---
 
-**English summary.** PassForge is a local-first, open-source Chrome password generator. It has no backend and does not collect, transmit, sell, or share personal data. Passwords are generated locally with `crypto.getRandomValues()`, are never stored by the extension, and are copied or filled only at the user's explicit request. When filling, the extension temporarily reads minimal password-field metadata to locate the target and confirmation fields; this information is used only for that action and is not retained or transmitted. The only persistent data is generation preferences stored in `chrome.storage.local`, which contain no passwords. No remote code, analytics, or advertising is used. Its use of Chrome API data is limited to the extension's single purpose, in accordance with the Chrome Web Store User Data Policy, including the Limited Use requirements.
+**English summary.** PassForge is a local-first, open-source Chrome password generator. It has no backend and does not transmit, sell, or share personal data; password generation and filling happen entirely on the device. Passwords are generated locally with `crypto.getRandomValues()`, are never stored by the extension, and are copied or filled only at the user's explicit request. When filling, the extension temporarily reads minimal password-field metadata to locate the target and confirmation fields; this information is used only for that action and is not retained or transmitted. The only persistent data is generation preferences stored in `chrome.storage.local`, which contain no passwords. No remote code, analytics, or advertising is used. Its use of Chrome API data is limited to the extension's single purpose, in accordance with the Chrome Web Store User Data Policy, including the Limited Use requirements.
